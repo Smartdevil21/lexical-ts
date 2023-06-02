@@ -4,35 +4,36 @@ import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { PlainTextPlugin } from "@lexical/react/LexicalPlainTextPlugin";
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
+import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import LexicalErrorBoundary, {
   LexicalErrorBoundaryProps,
 } from "@lexical/react/LexicalErrorBoundary";
 import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
-import { $getRoot, EditorState } from "lexical";
+import { $createTextNode, $getRoot, EditorState } from "lexical";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
+import { $createHeadingNode, HeadingNode } from "@lexical/rich-text";
 
-const theme = {};
+const theme = {
+  text: {
+    bold: Styles.bold,
+  },
+};
+
+function MyHeadingPlugin(): JSX.Element {
+  const [editor] = useLexicalComposerContext();
+  const onClick = (e: React.MouseEvent): void => {
+    editor.update(() => {
+      const root = $getRoot();
+      root.append(
+        $createHeadingNode("h1").append($createTextNode("Enter Your Txt here!"))
+      );
+    });
+  };
+  return <button onClick={onClick}>Heading 1</button>;
+}
 
 function onError(error: Error): void {
   console.log(error.message);
-}
-
-function onChnageFunc(editorState: EditorState) {
-  console.log(editorState);
-}
-
-function MyOnChangePlugin(props: {
-  onChnage: (editorState: EditorState) => void;
-}): null {
-  const { onChnage } = props;
-  const [editor] = useLexicalComposerContext();
-  useEffect(() => {
-    return editor.registerUpdateListener(({ editorState }) => {
-      onChnage(editorState);
-    });
-  }, [onChnage]);
-
-  return null;
 }
 
 function Editor(): JSX.Element {
@@ -40,19 +41,16 @@ function Editor(): JSX.Element {
     namespace: "MyEditor",
     theme,
     onError,
+    nodes: [HeadingNode],
   };
 
   return (
     <LexicalComposer initialConfig={initialConfig}>
-      <PlainTextPlugin
-        contentEditable={<ContentEditable />}
+      <MyHeadingPlugin />
+      <RichTextPlugin
+        contentEditable={<ContentEditable className={Styles.editor} />}
         placeholder={<div>Enter your text here</div>}
         ErrorBoundary={LexicalErrorBoundary}
-      />
-      <MyOnChangePlugin
-        onChnage={(editorState: EditorState) => {
-          console.log(editorState);
-        }}
       />
       <HistoryPlugin />
     </LexicalComposer>
