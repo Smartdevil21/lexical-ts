@@ -1,3 +1,3 @@
-Themes
-Rich Text Plugin
-Custom Heading Title
+Headings
+List
+Toolbars

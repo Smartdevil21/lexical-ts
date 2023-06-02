@@ -5,6 +5,23 @@
   padding: 20px;
   .bold {
     font-weight: bold;
-    color: red;
+    color: lightgreen;
   }
+  .h1 {
+    font-size: 48px;
+    color: blue;
+  }
+  .h2 {
+    font-size: 40px;
+    color: lightcoral;
+  }
+  .h3 {
+    font-size: 32px;
+    color: grey;
+  }
+}
+
+.toolbar {
+  display: flex;
+  gap: 10px;
 }
