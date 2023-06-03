@@ -1,74 +1,88 @@
 .editor_wrapper {
   width: 100%;
   padding: 10px;
-  .editor {
-    height: calc(100vh - 100px);
-    min-height: 500px;
-    width: 100%;
-    border: none;
-    outline: none;
-    padding: 10px;
-    position: relative;
-    border: 1px solid #444;
-    background-color: #222;
-    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.05);
-    line-height: 1.25;
-    .bold {
-      font-weight: bold;
-      color: #e2e2e2;
-    }
-    .underline {
-      text-decoration: underline;
-    }
-    .strikethrough {
-      text-decoration: line-through;
-    }
-    .italic {
-      text-transform: italic;
-    }
-    .h1 {
-      font-size: 48px;
-      line-height: 1.5;
-      color: #cacaca;
-    }
-    .h2 {
-      font-size: 40px;
-      line-height: 1.5;
-      color: #cacaca;
-    }
-    .h3 {
-      font-size: 32px;
-      color: #cacaca;
-    }
-    .ul,
-    .ol {
-      padding: 10px 20px;
-      color: #cacaca;
-    }
-    .p {
-      color: #b1b1b1;
-      line-height: 1.5;
-      font-size: 18px;
-    }
+}
+
+.editor {
+  height: calc(100vh - 100px);
+  min-height: 500px;
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 10px;
+  position: relative;
+  border: 1px solid #444;
+  background-color: #222;
+  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.05);
+  line-height: 1.25;
+  .bold {
+    font-weight: bold;
+    color: #e2e2e2;
   }
-  .placeholder {
-    position: absolute;
-    top: 78px;
-    left: 30px;
-    color: #b1b1b1;
+  .underline {
+    text-decoration: underline;
   }
-  .toolbar {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 10px;
+  .strikethrough {
+    text-decoration: line-through;
   }
-  button {
+  .italic {
+    text-transform: italic;
+  }
+  .h1 {
+    font-size: 48px;
+    line-height: 1.5;
+    color: #cacaca;
+  }
+  .h2 {
+    font-size: 40px;
+    line-height: 1.5;
+    color: #cacaca;
+  }
+  .h3 {
+    font-size: 32px;
+    color: #cacaca;
+  }
+  .ul,
+  .ol {
     padding: 10px 20px;
-    background-color: transparent;
-    color: #b1b1b1;
-    outline: none;
-    box-shadow: none;
-    border: 1px solid #333;
-    cursor: pointer;
+    color: #cacaca;
   }
+  .p {
+    color: #b1b1b1;
+    line-height: 1.5;
+    font-size: 18px;
+  }
+  .code {
+    background-color: #444;
+    color: #fff;
+    width: 100%;
+    font-family: monospace;
+  }
+  .quote {
+    padding: 10px;
+    margin-left: 10px;
+    border-left: 5px solid #555;
+    background-color: #333;
+  }
+}
+
+.placeholder {
+  position: absolute;
+  top: 78px;
+  left: 30px;
+  color: #b1b1b1;
+}
+.toolbar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+button {
+  padding: 10px 20px;
+  background-color: transparent;
+  color: #b1b1b1;
+  outline: none;
+  box-shadow: none;
+  border: 1px solid #333;
+  cursor: pointer;
 }
