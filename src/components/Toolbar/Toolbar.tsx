@@ -1,4 +1,3 @@
-import React from "react";
 import pluginsList from "./toolbarIcons";
 import Styles from "../../styles/components/toolbar.module.scss";
 import useOnClick from "../../hooks/useOnClick";

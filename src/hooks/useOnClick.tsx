@@ -26,13 +26,11 @@ import {
   ListNode,
   REMOVE_LIST_COMMAND,
 } from "@lexical/list";
-import { $isLinkNode, TOGGLE_LINK_COMMAND } from "@lexical/link";
+import { $isLinkNode } from "@lexical/link";
 import { useCallback, useEffect, useState } from "react";
 import { $getNearestNodeOfType, mergeRegister } from "@lexical/utils";
 
 type HEADING_TYPES = "h1" | "h2" | "h3";
-type LIST_TYPES = "ul" | "ol";
-
 const LowPriority = 1;
 
 const useOnClick = () => {
@@ -51,6 +49,8 @@ const useOnClick = () => {
       });
     }
   };
+
+  console.log(isLink);
 
   const formatHeading = (val: HEADING_TYPES) => {
     if (blockType !== val) {
