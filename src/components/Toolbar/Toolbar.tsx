@@ -5,7 +5,7 @@ import { createPortal } from "react-dom";
 import FloatingLinkEditor from "../../plugings/floatingLinkEditor/FloatingLinkEditor";
 
 function Toolbar() {
-  const { onClick, isLink, editor } = useOnClick();
+  const { onClick, isLink, editor, modal } = useOnClick();
   return (
     <div className={Styles.toolbar}>
       {pluginsList.map((plugin, index) => (
@@ -18,6 +18,7 @@ function Toolbar() {
       ))}
       {isLink &&
         createPortal(<FloatingLinkEditor editor={editor} />, document.body)}
+      {modal}
     </div>
   );
 }

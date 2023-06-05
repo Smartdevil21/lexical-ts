@@ -30,6 +30,8 @@ import { $isLinkNode } from "@lexical/link";
 import { useCallback, useEffect, useState } from "react";
 import { $getNearestNodeOfType, mergeRegister } from "@lexical/utils";
 import { TOGGLE_LINK_COMMAND } from "@lexical/link";
+import useModal from "./useModal";
+import { InsertImageDialog } from "../plugings/imagePlugin/ImagePlugin";
 
 type HEADING_TYPES = "h1" | "h2" | "h3";
 const LowPriority = 1;
@@ -39,6 +41,7 @@ const useOnClick = () => {
   const [blockType, setBlockType] = useState("paragraph");
   const [isLink, setIsLink] = useState(false);
   const [selectedEventTypes, setSelectedEventTypes] = useState([]);
+  const [modal, showModal] = useModal();
 
   const formatParagraph = () => {
     if (blockType !== "paragraph") {
@@ -50,8 +53,6 @@ const useOnClick = () => {
       });
     }
   };
-
-  console.log(isLink);
 
   const formatHeading = (val: HEADING_TYPES) => {
     if (blockType !== val) {
@@ -185,6 +186,11 @@ const useOnClick = () => {
       case eventTypes.formatInsertLink:
         insertLink();
         break;
+      case eventTypes.insertImage:
+        showModal("Insert Image", (onClose) => (
+          <InsertImageDialog activeEditor={editor} onClose={onClose} />
+        ));
+        break;
       default:
         break;
     }
@@ -252,7 +258,7 @@ const useOnClick = () => {
     }
 
     const node = getSelectedNode(selection);
-    const parent = node.getParent();
+    const parent = node?.getParent();
     if ($isLinkNode(parent) || $isLinkNode(node)) {
       if (
         !allSelectedEvents.includes(
@@ -295,7 +301,7 @@ const useOnClick = () => {
     );
   }, [editor, updateToolbar]);
 
-  return { onClick, isLink, editor };
+  return { onClick, isLink, editor, modal };
 };
 
 export default useOnClick;

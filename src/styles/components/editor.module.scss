@@ -77,6 +77,7 @@
   gap: 10px;
   margin-bottom: 10px;
 }
+
 button {
   padding: 10px 20px;
   background-color: transparent;
@@ -85,4 +86,22 @@ button {
   box-shadow: none;
   border: 1px solid #333;
   cursor: pointer;
+}
+
+@media only screen and (min-width: 600px) {
+  .editor {
+    img {
+      width: inherit;
+      max-width: 800px !important;
+    }
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .editor {
+    img {
+      width: inherit;
+      max-width: 90vw !important;
+    }
+  }
 }

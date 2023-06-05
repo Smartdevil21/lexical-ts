@@ -12,6 +12,8 @@ import { CodeNode, CodeHighlightNode } from "@lexical/code";
 import { QuoteNode } from "@lexical/rich-text";
 import { LinkNode } from "@lexical/link";
 import { LinkPlugin } from "@lexical/react/LexicalLinkPlugin";
+import ImagesPlugin from "../../plugings/imagePlugin/ImagePlugin";
+import { ImageNode } from "../../plugings/imagePlugin/nodes/ImageNodes";
 
 const theme = {
   text: {
@@ -51,6 +53,7 @@ export default function Editor() {
       CodeHighlightNode,
       QuoteNode,
       LinkNode,
+      ImageNode,
     ],
   };
 
@@ -64,6 +67,7 @@ export default function Editor() {
       />
       <ListPlugin />
       <LinkPlugin />
+      <ImagesPlugin />
       <HistoryPlugin />
     </LexicalComposer>
   );
