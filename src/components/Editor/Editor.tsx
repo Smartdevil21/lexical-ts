@@ -10,6 +10,8 @@ import { ListItemNode, ListNode } from "@lexical/list";
 import { ListPlugin } from "@lexical/react/LexicalListPlugin";
 import { CodeNode, CodeHighlightNode } from "@lexical/code";
 import { QuoteNode } from "@lexical/rich-text";
+import { LinkNode } from "@lexical/link";
+import { LinkPlugin } from "@lexical/react/LexicalLinkPlugin";
 
 const theme = {
   text: {
@@ -48,6 +50,7 @@ export default function Editor() {
       CodeNode,
       CodeHighlightNode,
       QuoteNode,
+      LinkNode,
     ],
   };
 
@@ -60,6 +63,7 @@ export default function Editor() {
         ErrorBoundary={LexicalErrorBoundary}
       />
       <ListPlugin />
+      <LinkPlugin />
       <HistoryPlugin />
     </LexicalComposer>
   );

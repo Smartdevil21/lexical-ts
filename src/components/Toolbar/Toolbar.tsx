@@ -1,9 +1,11 @@
 import pluginsList from "./toolbarIcons";
 import Styles from "../../styles/components/toolbar.module.scss";
 import useOnClick from "../../hooks/useOnClick";
+import { createPortal } from "react-dom";
+import FloatingLinkEditor from "../../plugings/floatingLinkEditor/FloatingLinkEditor";
 
 function Toolbar() {
-  const { onClick } = useOnClick();
+  const { onClick, isLink, editor } = useOnClick();
   return (
     <div className={Styles.toolbar}>
       {pluginsList.map((plugin, index) => (
@@ -14,6 +16,8 @@ function Toolbar() {
           }}
         />
       ))}
+      {isLink &&
+        createPortal(<FloatingLinkEditor editor={editor} />, document.body)}
     </div>
   );
 }

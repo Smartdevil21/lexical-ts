@@ -29,6 +29,7 @@ import {
 import { $isLinkNode } from "@lexical/link";
 import { useCallback, useEffect, useState } from "react";
 import { $getNearestNodeOfType, mergeRegister } from "@lexical/utils";
+import { TOGGLE_LINK_COMMAND } from "@lexical/link";
 
 type HEADING_TYPES = "h1" | "h2" | "h3";
 const LowPriority = 1;
@@ -123,6 +124,14 @@ const useOnClick = () => {
   //   });
   // };
 
+  const insertLink = useCallback(() => {
+    if (!isLink) {
+      editor.dispatchCommand(TOGGLE_LINK_COMMAND, "https://");
+    } else {
+      editor.dispatchCommand(TOGGLE_LINK_COMMAND, null);
+    }
+  }, [editor, isLink]);
+
   const onClick = (event: string) => {
     switch (event) {
       case eventTypes.formatBold:
@@ -172,6 +181,9 @@ const useOnClick = () => {
         break;
       case eventTypes.quote:
         formatQuote();
+        break;
+      case eventTypes.formatInsertLink:
+        insertLink();
         break;
       default:
         break;
@@ -283,7 +295,7 @@ const useOnClick = () => {
     );
   }, [editor, updateToolbar]);
 
-  return { onClick };
+  return { onClick, isLink, editor };
 };
 
 export default useOnClick;
